@@ -8,6 +8,7 @@ import logging
 from time import sleep
 import RPi.GPIO as GPIO
 from dragino import Dragino
+from io import StringIO
 
 DEBUG = 0
 CMD_MODE = 2
@@ -120,9 +121,9 @@ if __name__ == "__main__":
         values = cmd_query_data();
         if values is not None and len(values) == 2:
           print("PM2.5: ", values[0], ", PM10: ", values[1])
-          D.send(str(values[0]))
-          time.sleep(2) 
-          
+          D.send(json.dumps({"pm25": values[0], "pm10": values[1]}))
+          time.sleep(2)
+
         print("Going to sleep for 1 min...")
         cmd_set_sleep(1)
         time.sleep(10)
