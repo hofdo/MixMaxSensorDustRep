@@ -126,4 +126,4 @@ if __name__ == "__main__":
 
         print("Going to sleep for 1 min...")
         cmd_set_sleep(1)
-        time.sleep(10)
+        time.sleep(55)
